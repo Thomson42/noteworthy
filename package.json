@@ -2,14 +2,14 @@
   "name": "noteworthy",
   "version": "0.1.0",
   "private": true,
-  "description":"Alchemy Code Lab Note takeing web app for last(?) lab",
+  "description": "Alchemy Code Lab Note takeing web app for last(?) lab",
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-redux":"^5.0.6",
+    "react-redux": "^5.0.6",
     "react-scripts": "1.0.12",
-    "redux":"^3.7.2",
-    "save":"^2.3.1"
+    "redux": "^3.7.2",
+    "save": "^2.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -26,10 +26,10 @@
     "url": "https://github.com/Thomson42/noteworthy/issues"
   },
   "homepage": "https://github.com/Thomson42/noteworthy#readme",
-  "devDependencies":{
-    "enzyme":"^2.9.1",
-    "enzyme-to-json":"^1.5.1",
-    "jest":"^20.1.0-alpha.3",
-    "react-test-renderer":"^15.6.1"
+  "devDependencies": {
+    "enzyme": "^2.9.1",
+    "enzyme-to-json": "^1.5.1",
+    "jest": "^20.1.0-alpha.3",
+    "react-test-renderer": "^15.6.1"
   }
 }
