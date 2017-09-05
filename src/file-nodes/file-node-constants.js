@@ -1,21 +1,20 @@
-export const NEW_FILE = 'NEW_FILE';
+export const NEW_FOLDER = 'NEW_FOLDER';
 
-export const DELETE_FILE = 'DELETE_FILE';
+export const DELETE_FOLDER = 'DELETE_FOLDER';
 
-//can this also rename a file?
-export const ADD_TITLE = 'ADD_TITLE';
+//export const ADD_TITLE = 'ADD_TITLE';
 
 //Is ADD_CHILD_CONTENTS necessary?
 export const ADD_CHILD_CONTENTS = 'ADD_CHILD_CONTENTS';
 
-export const FETCHED_FILES = 'FETCHED_FILES';
+export const FETCHED_FOLDERS = 'FETCHED_FOLDERS';
 
-export const FETCHING_FILES = 'FETCHING_FILES';
+export const FETCHING_FOLDERS = 'FETCHING_FOLDERS';
 
-export const FETCH_FILES_ERROR = 'FETCH_FILES_ERROR';
+export const FETCH_FOLDERS_ERROR = 'FETCH_FOLDERS_ERROR';
 
-export const LOADED_FILES = 'LOADED_FILES';
+export const LOADED_FOLDERS = 'LOADED_FOLDERS';
 
-export const LOADING_FILES ='LOADING_FILES';
+export const LOADING_FOLDERS ='LOADING_FOLDERS';
 
-export const LOAD_FILES_ERROR = 'LOAD_FILES_ERROR';
+export const LOAD_FOLDERS_ERROR = 'LOAD_FOLDERS_ERROR';

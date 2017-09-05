@@ -24,7 +24,7 @@ export const TopBar = () => (
                 
             }}to="/">Home</NavLink>
             <NavLink style={{padding:20}}to="/about">About</NavLink>
-            <NavLink style={{padding:20}}to="/files">files</NavLink>
+            <NavLink style={{padding:20}}to="/folders">folders</NavLink>
             <NavLink style={{padding:20}}to="back">↑</NavLink>
 
         </ul>
@@ -33,7 +33,7 @@ export const TopBar = () => (
 
         <Route exact path="/" component={Home}/>
         <Route exact path="/about" component={About}/>
-        <Route path="/files" component={App}/>
+        <Route path="/folders" component={App}/>
     </div>
 );
 

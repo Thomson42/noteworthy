@@ -1,42 +1,54 @@
-import * as actions from './file-node-constants';
+import * as actions from './folder-node-constants';
 
-//Should set precedent for getting file data and setting file data
-export function files(state = [], action) {
+//Should set precedent for getting folder data and setting folder data
+export function folders(state = [], action) {
     switch(action.type) {
-    case actions.FETCHED_FILES:
+    case actions.FETCHED_FOLDERS:
         return action.payload;
-    case actions.LOADED_FILES:
+    case actions.LOADED_FOLDERS:
         return [...state, action.payload];
+    case actions.NEW_FOLDER:
+    //May need additional code for obj creation
+        return state.concat(action.folder);
+    // creating a valid way to rewrite is currently impossible
+    // case actions.ADD_TITLE:
+    //     return state.find((folder) => folder === action.title);
+    //CAUTON: only allow deletes on childless parents
+    case actions.DELETE_FOLDER:
+        return [
+            ...state.slice(0, action.index),
+            ...state.slice(action.index+1)
+        ];
     default:
         return state;
     }
 }
 
-//Should create a valid error handling when fetching or loading files fails.
-export function filesError(state = false, action) {
+//Should create a valid error handling when fetching or loading folders fails.
+export function foldersError(state = false, action) {
     switch(action.type) {
-    case actions.FETCH_FILES_ERROR:
-    case actions.LOAD_FILES_ERROR:
+    case actions.FETCH_FOLDERS_ERROR:
+    case actions.LOAD_FOLDERS_ERROR:
         return action.payload;
-    case actions.FETCHING_FILES:
-    case actions.LOADED_FILES:
+    case actions.FETCHING_FOLDERS:
+    case actions.LOADED_FOLDERS:
         return null;
     default:
         return state;
     }
 }
 
-//Creates a check on wether files are being fetched and sets 
-//LOADING_FILES state to true
-export function filesLoading(state = false, action) {
+//Creates a check on wether folders are being fetched and sets 
+//LOADING_FOLDERS state to true
+export function foldersLoading(state = false, action) {
     switch(action.type) {
-    case actions.FETCHING_FILES:
-    case actions.LOADING_FILES:
+    case actions.FETCHING_FOLDERS:
+    case actions.LOADING_FOLDERS:
         return true;
-    case actions.FETCHED_FILES:
-    case actions.LOADED_FILES:
-    case actions.FETCH_FILES_ERROR:
-    case actions.LOAD_FILES_ERROR:
+    case actions.FETCHED_FOLDERS:
+    case actions.LOADED_FOLDERS:
+    case actions.FETCH_FOLDERS_ERROR:
+    case actions.LOAD_FOLDERS_ERROR:
         return false;
     default:
         return state;
