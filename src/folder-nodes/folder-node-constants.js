@@ -2,10 +2,7 @@ export const NEW_FOLDER = 'NEW_FOLDER';
 
 export const DELETE_FOLDER = 'DELETE_FOLDER';
 
-//export const ADD_TITLE = 'ADD_TITLE';
-
-//Is ADD_CHILD_CONTENTS necessary?
-export const ADD_CHILD_CONTENTS = 'ADD_CHILD_CONTENTS';
+export const ADD_TITLE = 'ADD_TITLE';
 
 export const FETCHED_FOLDERS = 'FETCHED_FOLDERS';
 

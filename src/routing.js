@@ -17,14 +17,9 @@ export const TopBar = () => (
     
     <div className="TopBar">
         <ul>
-            <NavLink style={{
-                padding:20,
-                backgroundColor: 'white',
-                color: 'black',
-                
-            }}to="/">Home</NavLink>
+            <NavLink style={{padding:20}}to="/">Home</NavLink>
             <NavLink style={{padding:20}}to="/about">About</NavLink>
-            <NavLink style={{padding:20}}to="/folders">folders</NavLink>
+            <NavLink style={{padding:20}}to="/folders">Folders</NavLink>
             <NavLink style={{padding:20}}to="back">↑</NavLink>
 
         </ul>

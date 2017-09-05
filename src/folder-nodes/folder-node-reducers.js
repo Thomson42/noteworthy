@@ -10,9 +10,8 @@ export function folders(state = [], action) {
     case actions.NEW_FOLDER:
     //May need additional code for obj creation
         return state.concat(action.folder);
-    // creating a valid way to rewrite is currently impossible
-    // case actions.ADD_TITLE:
-    //     return state.find((folder) => folder === action.title);
+    case actions.ADD_TITLE:
+        return state.find((folder) => folder = action.title);
     //CAUTON: only allow deletes on childless parents
     case actions.DELETE_FOLDER:
         return [

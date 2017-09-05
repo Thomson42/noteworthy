@@ -1,15 +1,15 @@
 import * as actions from './folder-node-constants';
 import api from '../api/noteworthy-api';
 
-// export const addTitle = (payload) => ({
-//     type: actions.ADD_TITLE,
-//     payload
-// });
+export const addTitle = (payload) => ({
+    type: actions.ADD_TITLE,
+    payload
+});
 
-export function foldersHasErrored(bool) {
+export function foldersHasErred(bool) {
     return {
         type: actions.LOAD_FOLDERS_ERROR,
-        hasErrored: bool
+        hasErred: bool
     };
 }
 
@@ -43,6 +43,6 @@ export function fetchFoldersData(url) {
             })
             .then((response) => response.json())
             .then((folders) => dispatch(foldersFetchDataSuccess(folders)))
-            .catch(() => dispatch(foldersHasErrored(true)));
+            .catch(() => dispatch(foldersHasErred(true)));
     };
 }
