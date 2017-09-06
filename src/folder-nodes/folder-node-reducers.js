@@ -5,12 +5,10 @@ export function folders(state = [], action) {
     switch(action.type) {
     case actions.FETCHED_FOLDERS:
         return action.payload;
-    case actions.LOADED_FOLDERS:
-        return [...state, action.payload];
     case actions.NEW_FOLDER:
     //May need additional code for obj creation
-        return state.concat(action.folder);
-    case actions.ADD_TITLE:
+        return [...state, action.payload];
+    case actions.NEW_TITLE:
         return state.find((folder) => folder = action.title);
     //CAUTON: only allow deletes on childless parents
     case actions.DELETE_FOLDER:
@@ -27,9 +25,11 @@ export function folders(state = [], action) {
 export function foldersError(state = false, action) {
     switch(action.type) {
     case actions.FETCH_FOLDERS_ERROR:
+    case actions.NEW_FOLDER_ERROR:
     case actions.LOAD_FOLDERS_ERROR:
         return action.payload;
     case actions.FETCHING_FOLDERS:
+    case actions.NEW_FOLDER:
     case actions.LOADED_FOLDERS:
         return null;
     default:

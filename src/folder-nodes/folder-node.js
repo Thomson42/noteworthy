@@ -1,21 +1,24 @@
 import React from 'react';
-import { NavLink, Route } from 'react-router-dom';
+import { NavLink, Route, Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { NoteView } from '../notes/note-node';
 
 export function FolderView({folder}) {
-    const closed = '📂';
+    let closed = '📂';
     const opened = '📁';
     let current = closed;
 
-    current = (closed) ? closed:opened;
+    //current = (closed) ? closed:opened;
     function imgToggle(foldImg) {
-        return foldImg === '📂' ? '📂':'📁';
+        //closed = null;
+        return foldImg === '📂' ? undefined :'📂';
     }
     return (
         <div>
             {folder.title}
-            <NavLink to={`/folders/${folder._id}`} style={{fontSize:80}}>{imgToggle(current)}</NavLink> 
+            <NavLink to={`/folders/${folder._id}`}
+                onClick={imgToggle(closed)} 
+                style={{fontSize:80}}>{closed||opened}</NavLink> 
             <Route path='/folders/:id' component={NoteView}> </Route>
         </div>
     );

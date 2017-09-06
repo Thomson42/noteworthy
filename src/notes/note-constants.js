@@ -1,6 +1,6 @@
 export const ADD_CONTENS = 'ADD_CONTENS';
 
-export const ADD_TITLE = 'ADD_TITLE';
+export const NEW_TITLE = 'NEW_TITLE';
 
 export const NEW_NOTE = 'NEW_NOTE';
 

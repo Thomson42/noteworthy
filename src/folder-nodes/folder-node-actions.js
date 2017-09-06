@@ -1,13 +1,21 @@
 import * as actions from './folder-node-constants';
-import api from '../api/noteworthy-api';
+import api from './folder-node.api';
 
 export const addTitle = (payload) => ({
-    type: actions.ADD_TITLE,
+    type: actions.NEW_TITLE,
     payload
 });
-export function newFile() {
-    return ()
-}
+export const newFile = api => folder => dispatch => {
+    return api
+        .add(folder)
+        .then(saved => {
+            dispatch({type: actions.NEW_FOLDER, payload: saved });
+        },
+        error => {
+            dispatch({ type: actions.NEW_FOLDER_ERROR, payload: error.error });
+        }
+        );
+};
 
 export function foldersHasErred(bool) {
     return {
@@ -19,33 +27,30 @@ export function foldersHasErred(bool) {
 export function foldersAreLoading(bool) {
     return {
         type: actions.LOADING_FOLDERS,
-        isLoading: bool
+        foldersLoading: bool
     };
 }
+export const fetchFoldersData = api => folder => dispatch =>{
+    dispatch(foldersAreLoading(true));
 
-export function foldersFetchDataSuccess(folders) {
-    return {
-        type: actions.FETCHED_FOLDERS,
-        folders
-    };
-}
+    return api.getAll()
+        .then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
 
-export function fetchFoldersData(url) {
-    return (dispatch) => {
-        dispatch(foldersAreLoading(true));
+            dispatch(foldersAreLoading(false));
 
-        fetch(url)
-            .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
+            return response;
+        })
+        .then(
+            folders => {
+                dispatch({type: actions.FETCHED_FOLDERS, payload: folders});
+            },
+            error => {
+                dispatch({type: actions.FETCH_FOLDERS_ERROR, payload: error});
+            }
+        )
 
-                dispatch(foldersAreLoading(false));
-
-                return response;
-            })
-            .then((response) => response.json())
-            .then((folders) => dispatch(foldersFetchDataSuccess(folders)))
-            .catch(() => dispatch(foldersHasErred(true)));
-    };
-}
+        .catch(() => dispatch(foldersHasErred(true)));
+};
