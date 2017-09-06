@@ -31,18 +31,9 @@ export function foldersAreLoading(bool) {
     };
 }
 export const fetchFoldersData = api => folder => dispatch =>{
-    dispatch(foldersAreLoading(true));
+    dispatch({type: actions.FETCHING_FOLDERS});
 
     return api.getAll()
-        .then((response) => {
-            if (!response.ok) {
-                throw Error(response.statusText);
-            }
-
-            dispatch(foldersAreLoading(false));
-
-            return response;
-        })
         .then(
             folders => {
                 dispatch({type: actions.FETCHED_FOLDERS, payload: folders});

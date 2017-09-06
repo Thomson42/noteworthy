@@ -26,11 +26,9 @@ export function foldersError(state = false, action) {
     switch(action.type) {
     case actions.FETCH_FOLDERS_ERROR:
     case actions.NEW_FOLDER_ERROR:
-    case actions.LOAD_FOLDERS_ERROR:
         return action.payload;
     case actions.FETCHING_FOLDERS:
     case actions.NEW_FOLDER:
-    case actions.LOADED_FOLDERS:
         return null;
     default:
         return state;
@@ -42,12 +40,9 @@ export function foldersError(state = false, action) {
 export function foldersLoading(state = false, action) {
     switch(action.type) {
     case actions.FETCHING_FOLDERS:
-    case actions.LOADING_FOLDERS:
         return true;
     case actions.FETCHED_FOLDERS:
-    case actions.LOADED_FOLDERS:
     case actions.FETCH_FOLDERS_ERROR:
-    case actions.LOAD_FOLDERS_ERROR:
         return false;
     default:
         return state;
