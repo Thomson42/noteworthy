@@ -5,6 +5,9 @@ export const addTitle = (payload) => ({
     type: actions.ADD_TITLE,
     payload
 });
+export function newFile() {
+    return ()
+}
 
 export function foldersHasErred(bool) {
     return {

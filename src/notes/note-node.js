@@ -1,18 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Editor from './containers/Editor';
 
-export function Note({title, contents}) {
-    return(
+export function NoteView({title}) {
+    const note = '📝';
+    return (
         <div>
-            <span role="img">📝</span>
-            <section>
-                <span>{title}</span>,
-                <span>{contents}</span>!
-            </section>
-            <section>
-                <Editor />
-            </section>
+            <button style={{fontSize:40}}>{title} Title here!
+                <section>{note}</section>
+            </button>
         </div>
     );
 }
+
+export function NewNote({}) {
+    return (
+        <div>
+            <button>New Note</button>
+        </div>
+    );
+}
+export default connect(
+    state => ({})
+)(NoteView);
