@@ -23,6 +23,13 @@ export const addTitle = api => folder => dispatch => {
             dispatch({type: actions.NEW_TITLE, payload: error.error});
         });
 };
+export const deleteFolder = api => folder => dispatch => {
+    return api
+        .delete(folder)
+        .then(removed => {
+            dispatch({type: actions.DELETE_FOLDER, payload: removed});
+        });
+};
 
 export function foldersHasErred(bool) {
     return {

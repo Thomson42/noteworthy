@@ -25,6 +25,7 @@ describe('folder node reducers', () => {
         
         expect(additionalState).toEqual([linkFolder,odaFolda]);
     });
+
     it('rewrites file title', () => {
         const foeFolder = {
             _id: '234',
@@ -40,9 +41,8 @@ describe('folder node reducers', () => {
 
         const finalState = folders(initialState, {type: actions.NEW_TITLE, payload:goodFolder});
         expect(finalState).toEqual([goodFolder]);
-        
-        
     });
+
     it('deletes chosen folder', () => {
         const foeFolder = {
             _id: '234',
@@ -50,15 +50,20 @@ describe('folder node reducers', () => {
         };
         const initialState = folders([], {type: actions.NEW_FOLDER, payload:foeFolder});
         expect(initialState).toEqual([foeFolder]);
+        const finalState = folders(initialState,{type: actions.DELETE_FOLDER, payload:foeFolder});
+        expect(finalState).toEqual([]);
     });
+
     it('fetches available folders', () => {
         const newState = foldersLoading([], {type: actions.FETCHING_FOLDERS, payload: [1,2,3]});
         expect(newState).toEqual(true);
     });
+
     it('calls errors', () => {
         const newState = foldersError([], {type: actions.FETCH_FOLDERS_ERROR, payload:Error});
         expect(newState).toEqual(Error);
     });
+
     it('ignores working actions', () => {
         const newState = foldersError([], {type: actions.FETCHING_FOLDERS, payload:[]});
         expect(newState).toEqual(null);

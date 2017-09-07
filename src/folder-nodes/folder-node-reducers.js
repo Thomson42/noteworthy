@@ -20,11 +20,14 @@ export function folders(state = [], action) {
         ];
     }
     //CAUTON: only allow deletes on childless parents
-    case actions.DELETE_FOLDER:
+    case actions.DELETE_FOLDER:{
+        const index = state.findIndex((folder) => folder._id === action.payload._id);
+        if(index === -1) return state;
         return [
-            ...state.slice(0, action.index),
-            ...state.slice(action.index+1)
-        ];
+
+            ...state.slice(0, index),
+            ...state.slice(index+1)
+        ];}
     default:
         return state;
     }

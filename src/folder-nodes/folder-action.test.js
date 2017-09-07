@@ -1,5 +1,5 @@
 import * as actions from './folder-node-constants';
-import { addTitle, newFile, fetchFoldersData } from './folder-node-actions';
+import { addTitle, deleteFolder, newFile, fetchFoldersData } from './folder-node-actions';
 
 describe('folder actions', () => {
     it('makes a new a folder', () => {
@@ -23,18 +23,33 @@ describe('folder actions', () => {
 
     it('has an editable title', () => {
         expect.assertions(1);
-        const folder2 = {id:'231klj4poi345ads8', title: 'rewrite me'};
+        const folder2 = {_id:'231klj4poi345ads8', title: 'rewrite me'};
         const newFolder = {title:'poor empty file'};
         const api = {update: (id ,folder) => Promise.resolve(newFolder)};
 
         const dispatch = jest.fn();
 
         const rewriteFolder = addTitle(api);
-        const dispatchFunc = rewriteFolder(folder2.id, newFolder);
+        const dispatchFunc = rewriteFolder(folder2._id, newFolder);
 
         dispatchFunc(dispatch)
             .then(() => {
                 expect(dispatch).toHaveBeenCalledWith({type: actions.NEW_TITLE, payload:newFolder});
+            });
+    });
+
+    it('can delete folders',() => {
+        expect.assertions(1);
+        const foeFolder = {_id:'21kl34lkd0oprsdf', title: 'delete me!'};
+        const api = {delete: (id) => Promise.resolve(foeFolder)};
+
+        const dispatch = jest.fn();
+
+        const removeFolder = deleteFolder(api);
+        const dispatchFunc = removeFolder(foeFolder._id);
+        dispatchFunc(dispatch)
+            .then(() => {
+                expect(dispatch).toHaveBeenCalledWith({type: actions.DELETE_FOLDER, payload:foeFolder});
             });
     });
 
