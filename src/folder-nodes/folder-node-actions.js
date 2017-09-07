@@ -13,6 +13,8 @@ export const newFolder = api => folder => dispatch => {
         );
 };
 
+export const addFolder = newFolder(api);
+
 export const addTitle = api => folder => dispatch => {
     return api
         .update(folder)
@@ -23,6 +25,9 @@ export const addTitle = api => folder => dispatch => {
             dispatch({type: actions.NEW_TITLE, payload: error.error});
         });
 };
+
+export const rewriteFolder = addTitle(api);
+
 export const deleteFolder = api => folder => dispatch => {
     return api
         .delete(folder)
@@ -30,6 +35,8 @@ export const deleteFolder = api => folder => dispatch => {
             dispatch({type: actions.DELETE_FOLDER, payload: removed});
         });
 };
+
+export const removeFolder = deleteFolder(api);
 
 export function foldersHasErred(bool) {
     return {
@@ -58,3 +65,5 @@ export const fetchFoldersData = api => folder => dispatch =>{
         )
         .catch(() => dispatch(foldersHasErred(true)));
 };
+
+export const getFolder = fetchFoldersData(api);

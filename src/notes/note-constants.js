@@ -1,5 +1,7 @@
 export const NEW_NOTE = 'NEW_NOTE';
 
+export const NEW_NOTE_ERROR = 'NEW_NOTE_ERROR';
+
 export const DELETE_NOTE = 'DELETE_NOTE';
 
 export const REWRITE_NOTE = 'REWRITE_NOTE';
