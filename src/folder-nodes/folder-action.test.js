@@ -1,5 +1,5 @@
 import * as actions from './folder-node-constants';
-import { newFile, fetchFoldersData, foldersAreLoading } from './folder-node-actions';
+import { addTitle, newFile, fetchFoldersData } from './folder-node-actions';
 
 describe('folder actions', () => {
     it('makes a new a folder', () => {
@@ -19,13 +19,32 @@ describe('folder actions', () => {
             .then(() => {
                 expect(dispatched).toEqual([{type: actions.NEW_FOLDER, payload:folder}]);
             });
-
     });
+
+    it('has an editable title', () => {
+        expect.assertions(1);
+        const folder2 = {id:'231klj4poi345ads8', title: 'rewrite me'};
+        const newFolder = {title:'poor empty file'};
+        const api = {update: (id ,folder) => Promise.resolve(newFolder)};
+
+        const dispatch = jest.fn();
+
+        const rewriteFolder = addTitle(api);
+        const dispatchFunc = rewriteFolder(folder2.id, newFolder);
+
+        dispatchFunc(dispatch)
+            .then(() => {
+                expect(dispatch).toHaveBeenCalledWith({type: actions.NEW_TITLE, payload:newFolder});
+            });
+    });
+
     it('gets all the folders', () => {
         const folders = [{title:'daily meal plans'}];
         const api = { getAll: () => Promise.resolve(folders) };
         const dispatched = [];
-        const dispatch = (action) => dispatched.push(action);
+        const dispatch = (action) => {
+            dispatched.push(action);
+        };
 
         const getFolders = fetchFoldersData(api);
         return getFolders()(dispatch)

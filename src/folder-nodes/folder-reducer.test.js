@@ -8,22 +8,48 @@ describe('folder node reducers', () => {
 
         expect(newState).toEqual([]);
     });
-
+    
     it('saves a folder', () => {
         const linkFolder = {
             title: 'link folder'
         };
         const newState = folders([], {type: actions.NEW_FOLDER, payload: linkFolder});
-
+        
         expect(newState).toEqual([linkFolder]);
-
+        
         const odaFolda = {
             title: 'the other folder'
         };
-
+        
         const additionalState = folders(newState, {type: actions.NEW_FOLDER, payload: odaFolda});
-
+        
         expect(additionalState).toEqual([linkFolder,odaFolda]);
+    });
+    it('rewrites file title', () => {
+        const foeFolder = {
+            _id: '234',
+            title:'rewrite me!'
+        };
+        const goodFolder = {
+            _id:foeFolder._id,
+            title:'good folder'
+        };
+
+        const initialState = folders([], {type: actions.NEW_FOLDER, payload:foeFolder});
+        expect(initialState).toEqual([foeFolder]);
+
+        const finalState = folders(initialState, {type: actions.NEW_TITLE, payload:goodFolder});
+        expect(finalState).toEqual([goodFolder]);
+        
+        
+    });
+    it('deletes chosen folder', () => {
+        const foeFolder = {
+            _id: '234',
+            title:'delete me!'
+        };
+        const initialState = folders([], {type: actions.NEW_FOLDER, payload:foeFolder});
+        expect(initialState).toEqual([foeFolder]);
     });
     it('fetches available folders', () => {
         const newState = foldersLoading([], {type: actions.FETCHING_FOLDERS, payload: [1,2,3]});

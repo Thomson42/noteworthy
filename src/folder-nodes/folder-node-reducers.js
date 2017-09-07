@@ -6,10 +6,19 @@ export function folders(state = [], action) {
     case actions.FETCHED_FOLDERS:
         return action.payload;
     case actions.NEW_FOLDER:
-    //May need additional code for obj creation
         return [...state, action.payload];
-    case actions.NEW_TITLE:
-        return state.find((folder) => folder = action.title);
+    case actions.NEW_TITLE:{
+        const index = state.findIndex((folder) => folder._id === action.payload._id);
+        if(index === -1) return state;
+        return [
+            ...state.slice(0, index),
+            {
+                ...state[index],
+                title:action.payload.title
+            },
+            ...state.slice(index+1)
+        ];
+    }
     //CAUTON: only allow deletes on childless parents
     case actions.DELETE_FOLDER:
         return [

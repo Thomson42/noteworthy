@@ -24,6 +24,6 @@ export default {
         return wrapper(superagent.delete(`/api/folders/${id}`));
     },
     update(id, data) {
-        return wrapper(superagent.patch(`/api/folders/${id}`).send(data));
+        return wrapper(superagent.put(`/api/folders/${id}`).send(data));
     }
 };
