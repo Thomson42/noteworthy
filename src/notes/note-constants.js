@@ -1,11 +1,17 @@
-export const ADD_CONTENS = 'ADD_CONTENS';
-
-export const NEW_TITLE = 'NEW_TITLE';
-
 export const NEW_NOTE = 'NEW_NOTE';
 
 export const DELETE_NOTE = 'DELETE_NOTE';
 
-export const SAVE_NOTE = 'SAVE_NOTE';
+export const REWRITE_NOTE = 'REWRITE_NOTE';
 
-export const EDIT_NOTE = 'EDIT_NOTE';
+export const FETCHED_NOTES = 'FETCHED_NOTES';
+
+export const FETCHING_NOTES = 'FETCHING_NOTES';
+
+export const FETCH_NOTES_ERROR = 'FETCH_NOTES_ERROR';
+
+export const LOADED_NOTES = 'LOADED_NOTES';
+
+export const LOADING_NOTES ='LOADING_NOTES';
+
+export const LOAD_NOTES_ERROR = 'LOAD_NOTES_ERROR';

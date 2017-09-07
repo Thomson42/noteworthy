@@ -1,6 +1,5 @@
 import * as actions from './folder-node-constants';
 
-//Should set precedent for getting folder data and setting folder data
 export function folders(state = [], action) {
     switch(action.type) {
     case actions.FETCHED_FOLDERS:
@@ -21,6 +20,8 @@ export function folders(state = [], action) {
     }
     //CAUTON: only allow deletes on childless parents
     case actions.DELETE_FOLDER:{
+        const children = state.notes;
+        if(children) return state;
         const index = state.findIndex((folder) => folder._id === action.payload._id);
         if(index === -1) return state;
         return [

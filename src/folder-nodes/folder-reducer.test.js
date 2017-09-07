@@ -26,7 +26,7 @@ describe('folder node reducers', () => {
         expect(additionalState).toEqual([linkFolder,odaFolda]);
     });
 
-    it('rewrites file title', () => {
+    it('rewrites folder title', () => {
         const foeFolder = {
             _id: '234',
             title:'rewrite me!'

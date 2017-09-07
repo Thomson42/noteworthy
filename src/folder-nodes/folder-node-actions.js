@@ -1,7 +1,7 @@
 import * as actions from './folder-node-constants';
 import api from './folder-node.api';
 
-export const newFile = api => folder => dispatch => {
+export const newFolder = api => folder => dispatch => {
     return api
         .add(folder)
         .then(saved => {

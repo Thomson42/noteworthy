@@ -1,5 +1,5 @@
 import * as actions from './folder-node-constants';
-import { addTitle, deleteFolder, newFile, fetchFoldersData } from './folder-node-actions';
+import { addTitle, deleteFolder, newFolder, fetchFoldersData } from './folder-node-actions';
 
 describe('folder actions', () => {
     it('makes a new a folder', () => {
@@ -12,7 +12,7 @@ describe('folder actions', () => {
         const dispatch = (action) => {
             dispatched.push(action);
         };
-        const savedFolder = newFile(api);
+        const savedFolder = newFolder(api);
         const dispatchFunc = savedFolder(folder);
 
         dispatchFunc(dispatch)
@@ -24,7 +24,7 @@ describe('folder actions', () => {
     it('has an editable title', () => {
         expect.assertions(1);
         const folder2 = {_id:'231klj4poi345ads8', title: 'rewrite me'};
-        const newFolder = {title:'poor empty file'};
+        const newFolder = {title:'poor empty folder'};
         const api = {update: (id ,folder) => Promise.resolve(newFolder)};
 
         const dispatch = jest.fn();
