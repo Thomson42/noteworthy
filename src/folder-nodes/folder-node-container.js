@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getFolder, addFolder, rewriteFolder, removeFolder} from './folder-node-actions';
+import { getFolders, addFolder, rewriteFolder, removeFolder} from './folder-node-actions';
 
 import FolderView from './folder-node';
 
@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    dispatch(getFolder());
+    dispatch(getFolders());
     return bindActionCreators({ addFolder, rewriteFolder, removeFolder }, dispatch);
 }
 

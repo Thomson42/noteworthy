@@ -19,6 +19,4 @@ export function NewNote({}) {
         </div>
     );
 }
-export default connect(
-    state => ({})
-)(NoteView);
+

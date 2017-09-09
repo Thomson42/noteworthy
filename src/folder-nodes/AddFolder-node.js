@@ -1,13 +1,14 @@
 import React from 'react';
 
-export default function AddFolder({ onAdd }) {
+export default function AddFolder({ addFolder }) {
     return (
         <form onSubmit={e => {
             e.preventDefault();
-            onAdd({ title: e.target.elements.title.value });
+            addFolder({ title: e.target.elements.title });
         }}>
+            
+            <button type="submit"style={{fontSize:20}}>New Folder</button>
             <input required title="title"/>
-            <button type="submit"style={{fontSize:20}}>+</button>
         </form>
     );
 }

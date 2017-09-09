@@ -51,7 +51,7 @@ export function foldersAreLoading(bool) {
         foldersLoading: bool
     };
 }
-export const fetchFoldersData = api => folder => dispatch =>{
+export const fetchFoldersData = api => () => dispatch =>{
     dispatch({type: actions.FETCHING_FOLDERS});
 
     return api.getAll()
@@ -66,4 +66,4 @@ export const fetchFoldersData = api => folder => dispatch =>{
         .catch(() => dispatch(foldersHasErred(true)));
 };
 
-export const getFolder = fetchFoldersData(api);
+export const getFolders = fetchFoldersData(api);

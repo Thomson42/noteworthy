@@ -1,6 +1,12 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
 import App from './App';
+import createBrowserHistory from 'history/createBrowserHistory';
+
+const history = createBrowserHistory({
+    initialEntires: [ '/' ],
+    initialIndex: 0
+});
 
 const Home = () => (
     <div>
@@ -31,4 +37,4 @@ export const TopBar = () => (
     </div>
 );
 
-export default () => <Router><TopBar/></Router>;
+export default () => <Router history={history}><TopBar/></Router>;

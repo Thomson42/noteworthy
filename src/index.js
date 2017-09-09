@@ -21,5 +21,5 @@ const store = createStore(
   
 export default store;
 
-ReactDOM.render(<TopBar />, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}><TopBar /></Provider>, document.getElementById('root'));
 registerServiceWorker();
