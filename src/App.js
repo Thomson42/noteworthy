@@ -6,9 +6,6 @@ import {NewNote} from './notes/note-node';
 import FolderView from './folder-nodes/folder-node';
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (
             <main>

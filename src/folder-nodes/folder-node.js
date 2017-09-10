@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { NavLink, Route } from 'react-router-dom';
+import { NavLink, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { NoteView } from '../notes/note-node';
+import  NoteContainer  from '../notes/note-container';
 
 
 export default class FolderView extends Component {
@@ -11,24 +11,27 @@ export default class FolderView extends Component {
     // }
     render() {
         const { folders, loading, error } = this.props;
+        let { folderImg } = this.props;
         const {removeFolders, addFolders} = this.props;
-        let closed = '📂';
-        let opened = '📁';
-        let current = closed;
-        function imgToggle() {
-            //closed = null;
-            return current === '📂' ? undefined :'📂';
+        function hideFolder() {
+            folderImg = (folderImg === '📂') ? '📂':'';
         }
+
         if(loading) return <div>Loading...</div>;
         return (
             <div>
                 {folders.map(folder => (
-                    <div>
-                        <NavLink to={`/folders/${folder._id}`}
-                            onClick={() => imgToggle()} 
-                            style={{fontSize:80}}>{current}</NavLink> 
-                        <Route path='/folders/:id' component={NoteView}> </Route>
-                    </div>
+                    <Switch>
+                        <div>
+                            <section>
+                                {folder.title}
+                            </section>
+                            <NavLink to={`/folders/${folder._id}`}
+                                onClick={hideFolder()} 
+                                style={{fontSize:80}}>{folderImg}</NavLink> 
+                            <Route path='/folders/:id' component={NoteContainer}> </Route>
+                        </div>
+                    </Switch>
                 ))}
             </div>
         );

@@ -13,6 +13,8 @@ export const newNote = api => note => dispatch => {
         );
 };
 
+export const addNote = newNote(api);
+
 export const rewriteNote = api => note => dispatch => {
     return api
         .update(note)
@@ -23,6 +25,8 @@ export const rewriteNote = api => note => dispatch => {
             dispatch({type: actions.REWRITE_NOTE, payload: error.error});
         });
 };
+export const editNote = rewriteNote(api);
+
 export const deleteNote = api => note => dispatch => {
     return api
         .delete(note)
@@ -30,6 +34,7 @@ export const deleteNote = api => note => dispatch => {
             dispatch({type: actions.DELETE_NOTE, payload: removed});
         });
 };
+export const removeNote = deleteNote();
 
 export function notesHasErred(bool) {
     return {
@@ -58,3 +63,5 @@ export const fetchNotesData = api => note => dispatch =>{
         )
         .catch(() => dispatch(notesHasErred(true)));
 };
+
+export const getNotes = fetchNotesData(api);

@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
+import {NavLink,Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-export function NoteView({title}) {
-    const note = '📝';
+export default function NoteView({ notes, loading, error, noteImg }) {
     return (
         <div>
-            <button style={{fontSize:40}}>{title} Title here!
-                <section>{note}</section>
-            </button>
+            {notes.map(note => (
+                <Switch>
+                    <div>
+                        <section>
+                            {note.title}
+                        </section>
+                        <NavLink to={`/notes/${note._id}`}
+                            
+                            style={{fontSize:80}}>{noteImg}</NavLink> 
+                        <Route path='/notes/:id' component={NewNote}> </Route>
+                    </div>
+                </Switch>
+            ))}
         </div>
     );
 }
