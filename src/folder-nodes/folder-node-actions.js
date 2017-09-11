@@ -26,7 +26,7 @@ export const addTitle = api => folder => dispatch => {
         });
 };
 
-export const rewriteFolder = addTitle(api);
+export const editFolder = addTitle(api);
 
 export const deleteFolder = api => folder => dispatch => {
     return api

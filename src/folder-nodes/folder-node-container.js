@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getFolders, addFolder, rewriteFolder, removeFolder} from './folder-node-actions';
-import { getNotes } from '../notes/note-actions';
-    
+import { getFolders, addFolder, editFolder, removeFolder} from './folder-node-actions';
 import FolderView from './folder-node';
 
 function mapStateToProps(state) {
@@ -13,11 +11,10 @@ function mapStateToProps(state) {
         folderImg: '📂'
     };
 }
-
+//NOTE: may need to augment getNotes into folders space since they have the necessary id's
 function mapDispatchToProps(dispatch) {
     dispatch(getFolders());
-    dispatch(getNotes());
-    return bindActionCreators({ addFolder, rewriteFolder, removeFolder }, dispatch);
+    return bindActionCreators({ addFolder, editFolder, removeFolder }, dispatch);
 }
 
 const FolderContainer = connect(

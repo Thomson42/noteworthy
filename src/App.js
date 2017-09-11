@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import FolderContainer from './folder-nodes/folder-node-container';
-import AddFolder from './folder-nodes/AddFolder-node';
 import {NewNote} from './notes/note-node';
 import FolderView from './folder-nodes/folder-node';
 

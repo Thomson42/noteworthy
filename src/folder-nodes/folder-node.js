@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import  NoteContainer  from '../notes/note-container';
+import AddFolder from './AddFolder-node';
+
 
 
 export default class FolderView extends Component {
@@ -12,7 +14,7 @@ export default class FolderView extends Component {
     render() {
         const { folders, loading, error } = this.props;
         let { folderImg } = this.props;
-        const {removeFolders, addFolders} = this.props;
+        const {removeFolders, addFolder} = this.props;
         function hideFolder() {
             folderImg = (folderImg === '📂') ? '📂':'';
         }
@@ -33,6 +35,7 @@ export default class FolderView extends Component {
                         </div>
                     </Switch>
                 ))}
+                <AddFolder addFolder={ addFolder }/>
             </div>
         );
     }

@@ -4,7 +4,7 @@ export default function AddFolder({ addFolder }) {
     return (
         <form onSubmit={e => {
             e.preventDefault();
-            addFolder({ title: e.target.elements.title });
+            addFolder({ title: e.target.elements.title, notes:[]});
         }}>
             
             <button type="submit"style={{fontSize:20}}>New Folder</button>
