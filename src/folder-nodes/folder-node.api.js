@@ -1,41 +1,20 @@
-import superagent from 'superagent';
-
+import { request } from '../auth/request';
 export const API_URL = '/api/folders';
 
-const wrapper = cmd => cmd
-    .then(res => {
-        return res.body;
-    },
-    ({ response }) => {
-        throw response.body.error;
-    }
-    );
 export default {
     getAll() {
-        return wrapper(superagent.get('/api/folders'));
+        return request.get('/folders');
     },
     get(id) {
-        return wrapper(superagent.get(`/api/folders/${id}`));
+        return request.get(`/folders/${id}`);
     },
     add(data) {
-        return wrapper(superagent.post('/api/folders').send(data));
+        return request.post('/folders',data);
     },
     delete(id) {
-        return wrapper(superagent.delete(`/api/folders/${id}`));
+        return request.delete(`/folders/${id}`);
     },
     update(id, data) {
-        return wrapper(superagent.put(`/api/folders/${id}`).send(data));
+        return request.put(`/folders/${id}`,data);
     }
 };
-//failed higher order function incomplete
-// export function megaAgent(url, id, data, req) {
-//     id = '/'+id;
-//     const getAll = () => {
-//         return wrapper(superagent.req('/api/folders'));
-//     };
-//     const get = () => {
-//         return wrapper(superagent.req(`/api/${url}${id}`));
-//     };
-//     return get(); 
-
-// }

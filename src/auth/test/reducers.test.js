@@ -2,14 +2,14 @@ import assert from 'assert';
 import * as actions from '../constants';
 import auth, { user, token, error } from '../reducers';
 
-const testPassThru = reducer => {
+const testPassThru = (reducer,{ operator = 'strictEqual' }) => {
     it('pass-thru', () => {
-        const state = {};
+        const state = {'error': null, 'token': null, 'user': null};
         assert[operator](reducer(state, { type: 'NO_ACTION' }), state);
     });
 };
 
-const testInit = (reducer, expected) => {
+const testInit = (reducer, initial ,expected) => {
     it('initial value', () => {
         assert.deepEqual(reducer(undefined, { type: 'NO_ACTION' }), initial);
     });
@@ -17,7 +17,7 @@ const testInit = (reducer, expected) => {
 
 const testPassThruAndInit = (reducer, initial, { operator = 'strictEqual' } = {}) => {
     it('pass-thru', () => {
-        const state = {};
+        const state = {'error': null, 'token': null, 'user': null};
         assert[operator](reducer(state, { type: 'NO_ACTION' }), state);
     });
 
@@ -35,7 +35,7 @@ describe('combined auth reducer', () => {
 describe('user reducer', () => {
 
     testPassThru(user);
-    tesInit(user, null);
+    testInit(user, null);
 
     it('fetched', () => {
         const userState = { name: 'user' };
