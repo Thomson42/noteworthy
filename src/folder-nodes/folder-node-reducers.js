@@ -39,6 +39,7 @@ export function foldersError(state = false, action) {
     switch(action.type) {
     case actions.FETCH_FOLDERS_ERROR:
     case actions.NEW_FOLDER_ERROR:
+    case actions.DELETE_FOLDER_ERROR:
         return action.payload;
     case actions.FETCHING_FOLDERS:
     case actions.NEW_FOLDER:

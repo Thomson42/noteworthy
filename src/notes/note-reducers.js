@@ -1,32 +1,20 @@
 import * as actions from './note-constants';
 
-export function notes(state = [], action) {
+export function notes(state = {}, action) {
     switch(action.type) {
     case actions.FETCHED_NOTES:
-        return action.payload;
+        return action.payload.reduce((byId,note) => {
+            byId[note._id] = note;
+            return byId;
+        },{});
     case actions.NEW_NOTE:
-        return [...state, action.payload];
-    case actions.REWRITE_NOTE:{
-        const index = state.findIndex((note) => note._id === action.payload._id);
-        if(index === -1) return state;
-        return [
-            ...state.slice(0, index),
-            {
-                ...state[index],
-                title:action.payload.title,
-                contens:action.payload.contens
-            },
-            ...state.slice(index+1)
-        ];
-    }
+        return {...state, [action.payload._id]:action.payload};
+    case actions.REWRITE_NOTE:
+        return {...state, [action.payload._id]:{...action.payload}};
     case actions.DELETE_NOTE:{
-        const index = state.findIndex((note) => note._id === action.payload._id);
-        if(index === -1) return state;
-        return [
-
-            ...state.slice(0, index),
-            ...state.slice(index+1)
-        ];}
+        const coppy = {...state};
+        delete coppy[action.payload._id];
+        return coppy;}
     default:
         return state;
     }

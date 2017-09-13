@@ -4,6 +4,8 @@ export const NEW_FOLDER_ERROR = 'NEW_FOLDER_ERROR';
 
 export const DELETE_FOLDER = 'DELETE_FOLDER';
 
+export const DELETE_FOLDER_ERROR = 'DELETE_FOLDER_ERROR';
+
 export const NEW_TITLE = 'NEW_TITLE';
 
 export const FETCHED_FOLDERS = 'FETCHED_FOLDERS';

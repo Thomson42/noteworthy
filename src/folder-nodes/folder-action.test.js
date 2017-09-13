@@ -1,5 +1,5 @@
 import * as actions from './folder-node-constants';
-import { addTitle, deleteFolder, newFolder, fetchFoldersData } from './folder-node-actions';
+import { addTitle, deleteFolder, addFolder, fetchFoldersData } from './folder-node-actions';
 
 describe('folder actions', () => {
     it('makes a new a folder', () => {
@@ -12,7 +12,7 @@ describe('folder actions', () => {
         const dispatch = (action) => {
             dispatched.push(action);
         };
-        const savedFolder = newFolder(api);
+        const savedFolder = addFolder(api);
         const dispatchFunc = savedFolder(folder);
 
         dispatchFunc(dispatch)

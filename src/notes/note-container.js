@@ -9,7 +9,7 @@ function mapStateToProps(state) {
         notes: state.notes,
         error: state.noteError,
         loading: state.noteLoading,
-        noteImg: '📝'
+        folders: state.folders
     };
 }
 
@@ -18,9 +18,20 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ addNote, editNote, removeNote }, dispatch);
 }
 
+function mergeProps(state, dispatch, own) {
+    const { notes:notesById, folders, ...rest } = state;
+    const folder = folders.find(f => f._id === own.location.params.id);
+    const notes = folder.notes.map(n => notesById[n]);
+    return {
+        ...rest,
+        ...dispatch, 
+        notes
+    };
+}
 const NoteContainer = connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
+    mergeProps
 )(NoteView);
 
 export default NoteContainer;

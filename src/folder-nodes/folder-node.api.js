@@ -1,5 +1,5 @@
 import { request } from '../auth/request';
-export const API_URL = '/api/folders';
+export const API_URL = '/folders';
 
 export default {
     getAll() {

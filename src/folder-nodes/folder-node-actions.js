@@ -1,19 +1,21 @@
 import * as actions from './folder-node-constants';
 import api from './folder-node.api';
 
-export const newFolder = api => folder => dispatch => {
-    return api
-        .add(folder)
-        .then(saved => {
-            dispatch({type: actions.NEW_FOLDER, payload: saved });
-        },
-        error => {
-            dispatch({ type: actions.NEW_FOLDER_ERROR, payload: error.error });
-        }
-        );
-};
-
-export const addFolder = newFolder(api);
+export function addFolder(folder) {
+    
+    return dispatch => {
+        //dispatch({ type: actions.NEW_FOLDER });
+        
+        api
+            .add(folder)
+            .then(saved => {
+                dispatch({ type: actions.NEW_FOLDER, payload: saved });
+            })
+            .catch(error => {
+                dispatch({ type: actions.NEW_FOLDER_ERROR, payload: error });
+            });
+    };
+}
 
 export const addTitle = api => folder => dispatch => {
     return api

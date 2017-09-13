@@ -7,8 +7,7 @@ function mapStateToProps(state) {
     return {
         folders: state.folders,
         error: state.folderError,
-        loading: state.folderLoading,
-        folderImg: '📂'
+        loading: state.folderLoading
     };
 }
 //NOTE: may need to augment getNotes into folders space since they have the necessary id's

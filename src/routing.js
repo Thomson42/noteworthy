@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, NavLink, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Route, NavLink, Redirect, Switch} from 'react-router-dom';
 import App from './App';
 import Auth from './auth/Auth';
 import PrivateRoute from './Private-route';
@@ -27,11 +27,13 @@ export const TopBar = () => (
         </ul>
 
         <hr/>
-        <Route path="/auth" render={() => <Auth/>}/>
-        <PrivateRoute exact path="/folders" render={() => <App/>}/>
-        <Redirect to="/"/>
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/about" component={About}/>
+        <Switch>
+            <Route path="/auth" render={() => <Auth/>}/>
+            <PrivateRoute path="/folders" render={() => <App/>}/>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/about" component={About}/>
+            <Redirect to="/"/>
+        </Switch>
     </div>
 );
 
