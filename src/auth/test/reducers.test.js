@@ -2,10 +2,10 @@ import assert from 'assert';
 import * as actions from '../constants';
 import auth, { user, token, error } from '../reducers';
 
-const testPassThru = (reducer,{ operator = 'strictEqual' }) => {
+const testPassThru = (reducer,) => {
     it('pass-thru', () => {
         const state = {'error': null, 'token': null, 'user': null};
-        assert[operator](reducer(state, { type: 'NO_ACTION' }), state);
+        assert.deepEqual(reducer(state, { type: 'NO_ACTION' }), state);
     });
 };
 
