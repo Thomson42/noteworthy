@@ -18,7 +18,7 @@ class App extends Component {
     
         this.props
             .checkForToken();
-            //.then(setReady, setReady);
+        //.then(setReady, setReady);
     }
     render() {
         return (

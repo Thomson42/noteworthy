@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, NavLink, Redirect, Switch} from 'react-router-dom';
 import App from './App';
 import Auth from './auth/Auth';
 import PrivateRoute from './Private-route';
+import { checkForToken } from './auth/actions';
+import { connect } from 'react-redux';
 
 
 const Home = () => (
@@ -16,25 +18,40 @@ const About = () => (
         <h2>About</h2>
     </div>
 );
-export const TopBar = () => (
+class TopBar extends Component {
+
+    componentDidMount() {
+        this.props.checkForToken();
+    }
+    render() {
+        return (
+            <Router >
+                <div className="TopBar">
+                    <ul>
+                        <NavLink style={{padding:20}}to="/">Home</NavLink>
+                        <NavLink style={{padding:20}}to="/about">About</NavLink>
+                        <NavLink style={{padding:20}}to="/folders">Folders</NavLink>
     
-    <div className="TopBar">
-        <ul>
-            <NavLink style={{padding:20}}to="/">Home</NavLink>
-            <NavLink style={{padding:20}}to="/about">About</NavLink>
-            <NavLink style={{padding:20}}to="/folders">Folders</NavLink>
+                    </ul>
+    
+                    <hr/>
+                    <Switch>
+                        <Route path="/auth" render={() => <Auth/>}/>
+                        <PrivateRoute path="/folders" render={() => <App/>}/>
+                        <Route exact path="/" component={Home}/>
+                        <Route exact path="/about" component={About}/>
+                        <Redirect to="/"/>
+                    </Switch>
+                </div>
+            </Router>
 
-        </ul>
+        );
+    }
+}
 
-        <hr/>
-        <Switch>
-            <Route path="/auth" render={() => <Auth/>}/>
-            <PrivateRoute path="/folders" render={() => <App/>}/>
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/about" component={About}/>
-            <Redirect to="/"/>
-        </Switch>
-    </div>
-);
-
-export default () => <Router ><TopBar/></Router>;
+export default connect(
+    state => ({ user: state.auth.user }),
+    dispatch => ({
+        checkForToken() { return dispatch(checkForToken()); }
+    })
+)(TopBar);

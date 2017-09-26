@@ -28,11 +28,11 @@ export default class FolderView extends Component {
                 <div>
                     {folders.map(folder => (
                     
-                        <Node>
+                        <Node key={folder._id}>
                             <section>
                                 {folder.title}
                             </section>
-                            <NavLink to={`/folders/${folder._id}`}
+                            <NavLink to={`/folders/id:${folder._id}`}
                                 onClick={hideFolder()} 
                                 style={{fontSize:80}}>{folderImg}</NavLink> 
                         </Node>
