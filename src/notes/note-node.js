@@ -8,7 +8,7 @@ export default function NoteView({ notes, loading, error }) {
             Hello!
             {notes.map(note => (
                 
-                <div>
+                <div key={note._id}>
                     <section>
                         {note.title}
                     </section>

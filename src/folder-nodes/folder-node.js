@@ -26,8 +26,7 @@ export default class FolderView extends Component {
         return (
             <div>
                 <div>
-                    {folders.map(folder => (
-                    
+                    {folders && folders.map(folder => (
                         <Node key={folder._id}>
                             <section>
                                 {folder.title}
@@ -39,7 +38,6 @@ export default class FolderView extends Component {
                     ))}
                 </div>
                 <div style ={{clear:'both'}}>
-                    <Route path='/folders/:id' component={ NoteContainer }></Route>
                     <AddFolder addFolder={ addFolder }/>
                 </div>
             </div>
