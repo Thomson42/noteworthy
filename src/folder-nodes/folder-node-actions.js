@@ -35,7 +35,6 @@ export const deleteFolder = api => folder => dispatch => {
             dispatch({type: actions.DELETE_FOLDER, payload: removed});
         });
 };
-
 export const removeFolder = deleteFolder(api);
 
 export function foldersHasErred(bool) {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import AddFolder from './AddFolder-node';
+import DeleteFolder from './DeleteFolder-node';
 import styled from 'styled-components';
 
 const Node = styled.div`
@@ -11,7 +12,7 @@ export default class FolderView extends Component {
 
     render() {
         const { folders, loading, error } = this.props;
-        const {removeFolders, addFolder} = this.props;
+        const {removeFolder, addFolder} = this.props;
         let folderImg = '📂';
         function hideFolder() {
             folderImg = (folderImg === '📂') ? '📂':'';
@@ -28,7 +29,8 @@ export default class FolderView extends Component {
                             </section>
                             <NavLink to={`/folders/id:${folder._id}`}
                                 onClick={hideFolder()} 
-                                style={{fontSize:80}}>{folderImg}</NavLink> 
+                                style={{fontSize:80}}>{folderImg}</NavLink>
+                            <DeleteFolder removeFolder={ removeFolder } folder={ folder }/>
                         </Node>
                     ))}
                 </div>
