@@ -6,14 +6,14 @@ describe('folder actions', () => {
         const api = {
             add(folder) { return Promise.resolve(folder); }
         };
-        const folder = { title: 'my daily workouts'};
+        const folder = { title: 'my daily workouts', notes:[]};
         
         let dispatched = [];
         const dispatch = (action) => {
             dispatched.push(action);
         };
-        const savedFolder = addFolder(api);
-        const dispatchFunc = savedFolder(folder);
+        const savedFolder = addFolder(folder);
+        const dispatchFunc = savedFolder(api);
 
         dispatchFunc(dispatch)
             .then(() => {

@@ -6,24 +6,27 @@ describe('note reducers', () => {
     it('initial state', () => {
         const newState = notes(undefined, {type: undefined});
 
-        expect(newState).toEqual([]);
+        expect(newState).toEqual({});
     });
     
     it('saves a note', () => {
         const linkNote = {
+            _id: 'w12tdw24r',
             title: 'link note'
         };
+        const justID = linkNote._id;
         const newState = notes([], {type: actions.NEW_NOTE, payload: linkNote});
         
-        expect(newState).toEqual([linkNote]);
+        expect(newState).toEqual({'w12tdw24r': linkNote});
         
         const odaNot = {
+            _id: '23dfger',
             title: 'the other note'
         };
         
         const additionalState = notes(newState, {type: actions.NEW_NOTE, payload: odaNot});
         
-        expect(additionalState).toEqual([linkNote,odaNot]);
+        expect(additionalState).toEqual({'23dfger': odaNot,'w12tdw24r': linkNote});
     });
     
     it('rewrites note contens and title', () => {
@@ -39,10 +42,10 @@ describe('note reducers', () => {
         };
 
         const initialState = notes([], {type: actions.NEW_NOTE, payload:foeNote});
-        expect(initialState).toEqual([foeNote]);
+        expect(initialState).toEqual({'234': foeNote});
 
         const finalState = notes(initialState, {type: actions.REWRITE_NOTE, payload:weirdNote});
-        expect(finalState).toEqual([weirdNote]);
+        expect(finalState).toEqual({'234': weirdNote});
     });
 
     it('deletes chosen note', () => {
@@ -51,9 +54,9 @@ describe('note reducers', () => {
             title:'delete me!'
         };
         const initialState = notes([], {type: actions.NEW_NOTE, payload:foeNote});
-        expect(initialState).toEqual([foeNote]);
+        expect(initialState).toEqual({'234': foeNote});
         const finalState = notes(initialState,{type: actions.DELETE_NOTE, payload:foeNote});
-        expect(finalState).toEqual([]);
+        expect(finalState).toEqual({});
     });
 
     it('fetches available notes', () => {

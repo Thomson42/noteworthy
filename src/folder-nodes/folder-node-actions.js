@@ -3,9 +3,7 @@ import api from './folder-node.api';
 
 export function addFolder(folder) {
     
-    return dispatch => {
-        //dispatch({ type: actions.NEW_FOLDER });
-        
+    return dispatch => {        
         api
             .add(folder)
             .then(saved => {
