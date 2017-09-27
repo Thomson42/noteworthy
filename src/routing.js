@@ -39,8 +39,8 @@ class TopBar extends Component {
                     <hr/>
                     <Switch>
                         <Route path="/auth" render={() => <Auth/>}/>
-                        <PrivateRoute path="/folders" render={() => <App/>}/>
-                        <PrivateRoute path="/folders/id:" component={ NoteContainer }/>
+                        <PrivateRoute exact path="/folders" render={() => <App/>}/>
+                        <PrivateRoute path="/folders/:id" component={ NoteContainer }/>
                         <Route exact path="/" component={Home}/>
                         <Route exact path="/about" component={About}/>
                         <Redirect to="/"/>

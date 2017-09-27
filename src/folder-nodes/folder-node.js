@@ -27,8 +27,7 @@ export default class FolderView extends Component {
                             <section>
                                 {folder.title}
                             </section>
-                            <NavLink to={`/folders/id:${folder._id}`}
-                                onClick={hideFolder()} 
+                            <NavLink to={`/folders/${folder._id}`} 
                                 style={{fontSize:80}}>{folderImg}</NavLink>
                             <DeleteFolder removeFolder={ removeFolder } folder={ folder }/>
                         </Node>

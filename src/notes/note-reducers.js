@@ -1,12 +1,11 @@
 import * as actions from './note-constants';
 
-export function notes(state = {}, action) {
+export function notes(state = [], action) {
     switch(action.type) {
+    case actions.FETCHING_NOTES:
+        return [];
     case actions.FETCHED_NOTES:
-        return action.payload.reduce((byId,note) => {
-            byId[note._id] = note;
-            return byId;
-        },{});
+        return action.payload;
     case actions.NEW_NOTE:
         return {...state, [action.payload._id]:action.payload};
     case actions.REWRITE_NOTE:

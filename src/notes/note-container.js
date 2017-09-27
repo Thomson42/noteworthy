@@ -9,23 +9,19 @@ function mapStateToProps(state) {
         notes: state.notes,
         error: state.noteError,
         loading: state.noteLoading,
-        folders: state.folders
     };
 }
 
 function mapDispatchToProps(dispatch) {
-    dispatch(getNotes());
-    return bindActionCreators({ addNote, editNote, removeNote }, dispatch);
+
+    return bindActionCreators({ addNote, editNote, removeNote, getNotes }, dispatch);
 }
 
 function mergeProps(state, dispatch, own) {
-    const { notes:notesById, folders, ...rest } = state;
-    const folder = folders.find(f => f._id === own.location.params.id);
-    const notes = folder.notes.map(n => notesById[n]);
     return {
-        ...rest,
+        ...state,
         ...dispatch, 
-        notes
+        folderId:own.match.params.id
     };
 }
 const NoteContainer = connect(

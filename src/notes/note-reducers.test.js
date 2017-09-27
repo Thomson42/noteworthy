@@ -6,7 +6,7 @@ describe('note reducers', () => {
     it('initial state', () => {
         const newState = notes(undefined, {type: undefined});
 
-        expect(newState).toEqual({});
+        expect(newState).toEqual([]);
     });
     
     it('saves a note', () => {

@@ -26,9 +26,7 @@ class App extends Component {
                 <div className="App">
                     <FolderContainer />
                 </div>
-                <footer>
-                    <NewNote/>
-                </footer>
+
             </main>
         );
     }

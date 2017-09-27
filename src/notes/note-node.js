@@ -4,14 +4,15 @@ import { connect } from 'react-redux';
 const noteImg = '📝';
 export default class NoteView extends Component {
     componentDidMount() {
-        this.props.getNotes();
+        const { folderId, getNotes } = this.props;
+        getNotes(folderId);
     }
     render() {
-        const { notes } = this.props;
+        const { notes, addNote } = this.props;
         return (
             <div>
-                Hello!
-                {notes.map(note => (
+                Hello this is the note NoteView!
+                {notes && notes.map(note => (
                     
                     <div key={note._id}>
                         <section>
@@ -24,6 +25,10 @@ export default class NoteView extends Component {
                     </div>
                    
                 ))}
+                <div style ={{clear:'both'}}>
+                    <NewNote addNote={ addNote }/>
+                </div>
+                
             </div>
         );
     }

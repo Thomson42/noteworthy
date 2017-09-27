@@ -1,8 +1,8 @@
 import { request } from '../auth/request';
 
 export default {
-    getAll() {
-        return request.get('/notes');
+    getAll(id) {
+        return request.get(`/folders/${id}/notes`);
     },
     get(id) {
         return request.get(`/notes/${id}`);

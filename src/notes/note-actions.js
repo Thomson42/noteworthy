@@ -49,10 +49,10 @@ export function notesAreLoading(bool) {
         notesLoading: bool
     };
 }
-export const fetchNotesData = api => note => dispatch =>{
+export const fetchNotesData = api => folderId => dispatch =>{
     dispatch({type: actions.FETCHING_NOTES});
 
-    return api.getAll()
+    return api.getAll(folderId)
         .then(
             notes => {
                 dispatch({type: actions.FETCHED_NOTES, payload: notes});
