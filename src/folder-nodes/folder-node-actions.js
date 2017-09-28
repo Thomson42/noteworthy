@@ -15,18 +15,18 @@ export function addFolder(folder) {
     };
 }
 
-export const addTitle = api => folder => dispatch => {
+export const addNoteToFolder = api => folder => dispatch => {
     return api
         .update(folder)
         .then(saved => {
-            dispatch({type: actions.NEW_TITLE, payload: saved});
+            dispatch({type: actions.ADD_NOTE_TO_FOLDER, payload: saved});
         },
         error => {
-            dispatch({type: actions.NEW_TITLE, payload: error.error});
+            dispatch({type: actions.ADD_NOTE_TO_FOLDER, payload: error.error});
         });
 };
 
-export const editFolder = addTitle(api);
+export const editFolder = addNoteToFolder(api);
 
 export const deleteFolder = api => folder => dispatch => {
     return api

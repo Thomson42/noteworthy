@@ -1,19 +1,19 @@
 import * as actions from './note-constants';
 import api from './note.api';
 
-export const newNote = api => note => dispatch => {
-    return api
-        .add(note)
-        .then(saved => {
-            dispatch({type: actions.NEW_NOTE, payload: saved });
-        },
-        error => {
-            dispatch({ type: actions.NEW_NOTE_ERROR, payload: error.error });
-        }
-        );
-};
-
-export const addNote = newNote(api);
+export function addNote(note) {
+    return dispatch => {
+        api
+            .add(note)
+            .then(({savedNote, updatedUser}) => {
+                dispatch({ type: actions.NEW_NOTE, payload: savedNote });
+                dispatch({ type:'FETCHED_FOLDERS', payload: updatedUser});
+            })
+            .catch(error => {
+                dispatch({ type: actions.NEW_NOTE_ERROR, payload: error });
+            });
+    };
+}
 
 export const rewriteNote = api => note => dispatch => {
     return api

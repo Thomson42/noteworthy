@@ -7,7 +7,7 @@ export function notes(state = [], action) {
     case actions.FETCHED_NOTES:
         return action.payload;
     case actions.NEW_NOTE:
-        return {...state, [action.payload._id]:action.payload};
+        return [...state, action.payload];
     case actions.REWRITE_NOTE:
         return {...state, [action.payload._id]:{...action.payload}};
     case actions.DELETE_NOTE:{

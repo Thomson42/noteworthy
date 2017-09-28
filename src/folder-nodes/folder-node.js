@@ -14,9 +14,6 @@ export default class FolderView extends Component {
         const { folders, loading, error } = this.props;
         const {removeFolder, addFolder} = this.props;
         let folderImg = '📂';
-        function hideFolder() {
-            folderImg = (folderImg === '📂') ? '📂':'';
-        }
 
         if(loading) return <div>Loading...</div>;
         return (

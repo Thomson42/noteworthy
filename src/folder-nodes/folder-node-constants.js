@@ -6,7 +6,7 @@ export const DELETE_FOLDER = 'DELETE_FOLDER';
 
 export const DELETE_FOLDER_ERROR = 'DELETE_FOLDER_ERROR';
 
-export const NEW_TITLE = 'NEW_TITLE';
+export const ADD_NOTE_TO_FOLDER = 'ADD_NOTE_TO_FOLDER';
 
 export const FETCHED_FOLDERS = 'FETCHED_FOLDERS';
 

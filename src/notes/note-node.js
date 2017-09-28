@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {NavLink,Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
+import NewNote from './NewNote-node';
+import DeleteNote from './DeleteFolder-node';
+
 const noteImg = '📝';
 export default class NoteView extends Component {
     componentDidMount() {
@@ -8,37 +10,30 @@ export default class NoteView extends Component {
         getNotes(folderId);
     }
     render() {
-        const { notes, addNote } = this.props;
+        const { folder, notes, addNote, removeNote, editFolder} = this.props;
         return (
             <div>
                 Hello this is the note NoteView!
                 {notes && notes.map(note => (
-                    
                     <div key={note._id}>
                         <section>
                             {note.title}
                         </section>
                         <NavLink to={`/notes/${note._id}`}
-                                
-                            style={{fontSize:80}}>{noteImg}</NavLink> 
-                        <Route path='/notes/:id' component={NewNote}></Route>
+                            style={{fontSize:80}}>{noteImg}</NavLink>
+                        <DeleteNote deleteNote={ removeNote } note={ note }/>
                     </div>
                    
                 ))}
                 <div style ={{clear:'both'}}>
-                    <NewNote addNote={ addNote }/>
+                    <NewNote 
+                        addNote={ addNote } 
+                        editFolder={ editFolder } 
+                        folder={ folder }/>
                 </div>
                 
             </div>
         );
     }
-}
-
-export function NewNote({}) {
-    return (
-        <div>
-            <button>New Note</button>
-        </div>
-    );
 }
 

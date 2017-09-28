@@ -39,7 +39,7 @@ describe('folder node reducers', () => {
         const initialState = folders([], {type: actions.NEW_FOLDER, payload:foeFolder});
         expect(initialState).toEqual([foeFolder]);
 
-        const finalState = folders(initialState, {type: actions.NEW_TITLE, payload:goodFolder});
+        const finalState = folders(initialState, {type: actions.ADD_NOTE_TO_FOLDER, payload:goodFolder});
         expect(finalState).toEqual([goodFolder]);
     });
 

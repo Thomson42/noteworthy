@@ -1,5 +1,5 @@
 import * as actions from './folder-node-constants';
-import { addTitle, deleteFolder, addFolder, fetchFoldersData } from './folder-node-actions';
+import { addNoteToFolder, deleteFolder, addFolder, fetchFoldersData } from './folder-node-actions';
 
 describe('folder actions', () => {
     it('makes a new a folder', () => {
@@ -29,12 +29,12 @@ describe('folder actions', () => {
 
         const dispatch = jest.fn();
 
-        const rewriteFolder = addTitle(api);
+        const rewriteFolder = addNoteToFolder(api);
         const dispatchFunc = rewriteFolder(folder2._id, newFolder);
 
         dispatchFunc(dispatch)
             .then(() => {
-                expect(dispatch).toHaveBeenCalledWith({type: actions.NEW_TITLE, payload:newFolder});
+                expect(dispatch).toHaveBeenCalledWith({type: actions.ADD_NOTE_TO_FOLDER, payload:newFolder});
             });
     });
 

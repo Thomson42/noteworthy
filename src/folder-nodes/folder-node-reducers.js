@@ -6,19 +6,18 @@ export function folders(state = [], action) {
         return action.payload;
     case actions.NEW_FOLDER:
         return [...state, action.payload];
-    case actions.NEW_TITLE:{
+    case actions.ADD_NOTE_TO_FOLDER:{
         const index = state.findIndex((folder) => folder._id === action.payload._id);
         if(index === -1) return state;
         return [
             ...state.slice(0, index),
             {
                 ...state[index],
-                title:action.payload.title
+                notes:[...action.payload.notes._id]
             },
             ...state.slice(index+1)
         ];
     }
-    //CAUTON: only allow deletes on childless parents
     case actions.DELETE_FOLDER:{
         const children = state.notes;
         if(children) return state;

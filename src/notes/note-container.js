@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getNotes, addNote, editNote, removeNote} from './note-actions';
+import { editFolder } from '../folder-nodes/folder-node-actions';
 
 import NoteView from './note-node';
 
@@ -9,12 +10,13 @@ function mapStateToProps(state) {
         notes: state.notes,
         error: state.noteError,
         loading: state.noteLoading,
+        folder: state.folder
     };
 }
 
 function mapDispatchToProps(dispatch) {
 
-    return bindActionCreators({ addNote, editNote, removeNote, getNotes }, dispatch);
+    return bindActionCreators({ addNote, editNote, removeNote, getNotes, editFolder }, dispatch);
 }
 
 function mergeProps(state, dispatch, own) {

@@ -6,6 +6,7 @@ import PrivateRoute from './Private-route';
 import { checkForToken } from './auth/actions';
 import { connect } from 'react-redux';
 import  NoteContainer  from './notes/note-container';
+import Editor from './notes/editor.js';
 
 
 
@@ -41,6 +42,7 @@ class TopBar extends Component {
                         <Route path="/auth" render={() => <Auth/>}/>
                         <PrivateRoute exact path="/folders" render={() => <App/>}/>
                         <PrivateRoute path="/folders/:id" component={ NoteContainer }/>
+                        <PrivateRoute path='/notes/:id' component={Editor}/>
                         <Route exact path="/" component={Home}/>
                         <Route exact path="/about" component={About}/>
                         <Redirect to="/"/>
